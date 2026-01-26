@@ -1,1 +1,1 @@
-# OOP_homework
+# OOP-Console-Minesweeper-project
