@@ -1,87 +1,77 @@
 # 💣 OOP Console Minesweeper Project
 
-![Language](https://img.shields.io/badge/Language-C++-blue.svg)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-blue.svg)
 ![Paradigm](https://img.shields.io/badge/Paradigm-OOP-green.svg)
 ![Interface](https://img.shields.io/badge/Interface-Console-orange.svg)
-![Build](https://img.shields.io/badge/Build-Makefile-purple.svg)
+![Compiler](https://img.shields.io/badge/Compiler-GCC%20%2F%20G%2B%2B-purple.svg)
 
-A C++ console-based implementation of the classic **Minesweeper** game, designed using core **Object-Oriented Programming (OOP)** principles. It features custom grid sizes, dynamic mine placement, coordinate-based tile uncovering, and flag placement.
+A C++ console-based implementation of the classic **Minesweeper** game, designed using core **Object-Oriented Programming (OOP)** principles including class inheritance, polymorphism, virtual functions, and recursive path-uncovering logic.
 
 ---
 
 ## 📌 Project Overview
 
-This project refactors the traditional Minesweeper mechanics into a modular, object-oriented C++ application. The game handles grid generation, neighbor mine calculations, path uncovering (including zero-mine chain reveals), and state tracking directly within the terminal interface.
+This project implements the traditional Minesweeper mechanics inside a clean, object-oriented single-file structure. It features dynamic grid generation, random mine scattering, adjacent mine counts, exception handling for invalid user inputs, and recursive clearing of blank tiles.
 
 ### Key Features
-* **Object-Oriented Design:** Clear separation of concerns utilizing classes for the board, tiles, and game logic management.
-* **Dynamic Grid & Mine Allocation:** Configurable board dimensions and mine counts.
-* **Recursive Zero-Reveal:** Automatically unveils adjacent safe tiles when a tile with zero adjacent mines is cleared.
-* **Interactive Command System:** Input coordinates to reveal tiles or toggle flags safely.
-* **Game State Tracking:** Real-time feedback for wins, losses, remaining flags, and elapsed game state.
+* **Object-Oriented Architecture:**
+  * `Oyun`: Abstract base class defining virtual game interface functions (`tahtaGoster`, `hamleYap`, `kazandiMi`).
+  * `Hucre`: Encapsulates tile states (`mayinMi`, `acildiMi`, `komsuMayinlar`).
+  * `MayinTarlasi`: Derived class handling game board generation, vector grids, and game state management.
+* **Selectable Difficulty Levels:**
+  * **1 - Easy:** $5 \times 5$ Grid, 5 Mines
+  * **2 - Medium:** $6 \times 6$ Grid, 8 Mines
+  * **3 - Hard:** $7 \times 7$ Grid, 10 Mines
+* **Recursive Zero-Reveal Algorithm:** Automatically unveils neighboring tiles whenever a tile with 0 adjacent mines is selected.
+* **Robust Input Handling:** Uses `try-catch` blocks to catch out-of-bounds coordinate entries (`std::out_of_range`) without crashing the application.
+
+---
+
+## 🎮 How to Play
+
+1. Run the application and enter your preferred difficulty level (`1`, `2`, or `3`).
+2. Input target coordinates step-by-step:
+   * **Row number:** `0` to `N-1`
+   * **Column number:** `0` to `N-1`
+3. Uncover all non-mined tiles (`#` hidden $\rightarrow$ numbers revealed) to win the game!
+4. Detonating a mine (`*`) triggers an immediate **GAME OVER**.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-* A C++ compiler supporting C++11 or higher (e.g., `g++` via MinGW on Windows or native GCC/Clang on Linux/macOS)
-* `make` utility (optional, if Makefile is provided)
+* A C++ compiler supporting C++11 or higher (e.g., `g++` via MinGW on Windows or native GCC/Clang on Linux/macOS).
 
-### Building and Running
+### Compiling and Running
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/USERNAME/OOP-Console-Minesweeper-project.git](https://github.com/USERNAME/OOP-Console-Minesweeper-project.git)
+   git clone [https://github.com/KorsanPanda/OOP-Console-Minesweeper-project.git](https://github.com/KorsanPanda/OOP-Console-Minesweeper-project.git)
    cd OOP-Console-Minesweeper-project
    ```
 
-2. **Compile the project:**
-   * Using Makefile:
-     ```bash
-     make
-     ```
-   * Or using G++ directly:
-     ```bash
-     g++ -std=c++11 src/*.cpp -Iinclude -o bin/Minesweeper
-     ```
+2. **Compile the source file:**
+   ```bash
+   g++ MayinTarlasi -o MayinTarlasi.exe
+   ```
 
 3. **Run the executable:**
    * **Windows:**
      ```cmd
-     .\bin\Minesweeper.exe
+     .\MayinTarlasi.exe
      ```
    * **Linux / macOS:**
      ```bash
-     ./bin/Minesweeper
+     ./MayinTarlasi.exe
      ```
-
----
-
-## 🎮 How to Play
-
-1. Launch the game and select your desired difficulty or grid size.
-2. Enter coordinates along with an action:
-   * **Reveal tile:** Enter row and column numbers (e.g., `r 3 4` or `3 4`).
-   * **Flag / Unflag tile:** Toggle a flag on suspected mine locations (e.g., `f 3 4`).
-3. Clear all safe tiles without detonating a mine to win the game!
 
 ---
 
 ## 📁 Directory Structure
 
 ```text
-OOP-Console-Minesweeper-project/
-├── bin/
-│   └── Minesweeper.exe      # Generated executable file
-├── include/
-│   ├── Board.h              # Board class definition & grid management
-│   ├── Tile.h               # Tile class definition & state attributes
-│   └── Game.h               # Main game loop & interaction handling
-├── src/
-│   ├── Board.cpp            # Grid generation & recursive reveal logic
-│   ├── Tile.cpp             # Tile behavior implementation
-│   ├── Game.cpp             # Input parsing & game state checks
-│   └── Main.cpp             # Program entry point
-└── Makefile                 # Build script for compilation
+korsanpanda-oop-console-minesweeper-project/
+├── MayinTarlasi          # Main C++ source code file (OOP classes & game loop)
+└── README.md             # Project documentation
 ```
